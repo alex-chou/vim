@@ -16,6 +16,7 @@
     Plug 'tpope/vim-fugitive'
     Plug 'Yggdroot/indentLine'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
     Plug 'fholgado/minibufexpl.vim'
     call plug#end()
 
@@ -37,8 +38,13 @@
     " toggle NERDTree on and off
     map <C-n> :NERDTreeToggle<CR>
 
-    " quick save
+    " look for files
+    map <C-f> :Files<CR>
+
+    " quick save, quit, save & quit
     nnoremap <Leader>w :w<CR>
+    nnoremap <Leader>q :q<CR>
+    nnoremap <Leader>x :x<CR>
 
 "
 " Wrap Configs
@@ -85,6 +91,12 @@
 "
 " File and Backup Configs
 "
+    " enable filetype plugins
+    filetype indent plugin on
+
+    " auto read the file if it has been changed elsewhere
+    set autoread
+
     " no backup after file has been written
     set nobackup
     set nowritebackup
@@ -110,15 +122,26 @@
 "
 " Misc Configs
 "
-    filetype indent plugin on
-    syntax on
+    " enable syntax highlighting
+    syntax enable
+
+    " color scheme located in ~/.vim/colors
     colorscheme Tomorrow-Night
 
-    set number
-    set colorcolumn=80
+    " if a buffer is hidden, it is abandoned
     set hidden
-    set history=250
+
+    " the number of lines vim should remember
+    set history=700
+
+    " allow backspace to work as expected
     set backspace=indent,eol,start
+
+    " turn on line numbers
+    set number
+
+    " create a colored column
+    set colorcolumn=80
 
     " set utf8 as standard encoding and en_us as standard language
     set encoding=utf8
@@ -141,6 +164,11 @@
     autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
 
 "
+" Ruby Configs
+"
+    autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+"
 " C Configs
 "
-    autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=0
+    autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
