@@ -2,13 +2,6 @@
 " Vim-Plug Configs
 " Installation: https://github.com/junegunn/vim-plug#installation
 "
-    " install vim-plug automatically if it is not there already
-    if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall | source $MYVIMRC
-    endif
-
     " plug ins that we want to install
     call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
