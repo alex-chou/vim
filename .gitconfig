@@ -1,9 +1,0 @@
-# This is Git's per-user configuration file.
-[user]
-# Please adapt and uncomment the following lines:
-name = Alex Chou
-email = acchou@justin.tv
-[alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	co = checkout
-	st = status
