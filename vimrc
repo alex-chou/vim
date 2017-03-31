@@ -36,7 +36,7 @@
     map <C-l> <C-W>l
 
     " toggle NERDTree on and off
-    map <C-n> :NERDTreeToggle<CR>
+    map <silent> <C-n> :NERDTreeToggle<CR>
 
     " look for files
     map <C-f> :Files<CR>
@@ -152,7 +152,7 @@
     " show matching brackets
     set showmatch
 
-    " splits new verticle split to the right and new horizontal to the bottom
+    " splits new vertical split to the right and new horizontal to the bottom
     set splitbelow splitright
 
     " removes trailing whitespaces
@@ -162,6 +162,19 @@
 " Go Configs
 "
     autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
+    autocmd FileType go nmap <Leader>ds <Plug>(go-def-split)
+    autocmd FileType go nmap <leader>b <Plug>(go-build)
+    autocmd FileType go nmap <leader>t <Plug>(go-test)
+    autocmd FileType go nmap <leader>l :GoMetaLinter<CR>
+
+    " Syntax stuff
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_interfaces = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_fmt_command = "goimports"
 
 "
 " Ruby Configs
