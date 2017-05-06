@@ -18,6 +18,7 @@
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'fholgado/minibufexpl.vim'
+    Plug 'fatih/vim-go'
     call plug#end()
 
 "
@@ -71,6 +72,7 @@
     set softtabstop=4
 
     " smart auto indent for new line
+    set autoindent
     set smartindent
 
 "
@@ -185,3 +187,8 @@
 " C Configs
 "
     autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+"
+" Python Configs
+"
+    autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 autoindent nosmartindent
