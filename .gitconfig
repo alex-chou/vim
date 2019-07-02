@@ -1,9 +1,15 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-name = Alex Chou
-email = acchou@justin.tv
+	name = Alex Chou
+	email = achou@twitch.tv
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	co = checkout
 	st = status
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[url "ssh://alexchou@git.amazon.com:"]
+    insteadOf = ssh://git.amazon.com
+[url "ssh://alexchou@git.amazon.com:2222"]
+    insteadOf = ssh://git.amazon.com:2222

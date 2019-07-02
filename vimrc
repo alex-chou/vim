@@ -10,7 +10,9 @@
     Plug 'Yggdroot/indentLine'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    Plug 'fholgado/minibufexpl.vim'
+    " Plug 'fholgado/minibufexpl.vim'
+    Plug 'fatih/vim-go'
+    Plug 'hashivim/vim-terraform'
     call plug#end()
 
 "
@@ -29,7 +31,13 @@
     map <C-l> <C-W>l
 
     " toggle NERDTree on and off
-    map <C-n> :NERDTreeToggle<CR>
+    map <silent> <C-n> :NERDTreeToggle<CR>
+
+    " toggle IndentLine on and off
+    map <silent> <C-i> :IndentLinesToggle<CR>
+
+    " look for files tracked by Git
+    map <C-g> :GFiles<CR>
 
     " look for files
     map <C-f> :Files<CR>
@@ -65,6 +73,9 @@
 
     " smart auto indent for new line
     set smartindent
+
+    " turn off indentline for json files
+    let g:indentLine_fileTypeExclude = ['json']
 
 "
 " Search Configs
@@ -113,6 +124,12 @@
     endtry
 
 "
+" Status Line Configs
+"
+    set laststatus=2
+    set statusline=%f "tail of the filename
+
+"
 " Misc Configs
 "
     " enable syntax highlighting
@@ -131,7 +148,7 @@
     set backspace=indent,eol,start
 
     " turn on line numbers
-    set number
+    set number relativenumber
 
     " create a colored column
     set colorcolumn=80
@@ -145,16 +162,41 @@
     " show matching brackets
     set showmatch
 
-    " splits new verticle split to the right and new horizontal to the bottom
+    " splits new vertical split to the right and new horizontal to the bottom
     set splitbelow splitright
 
     " removes trailing whitespaces
     autocmd BufWritePre * :%s/\s\+$//e
 
+    " highlight the current line
+    set cursorline
+
 "
 " Go Configs
 "
     autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
+    autocmd FileType go nmap <Leader>ds <Plug>(go-def-split)
+    autocmd FileType go nmap <leader>b <Plug>(go-build)
+    autocmd FileType go nmap <leader>t <Plug>(go-test)
+    autocmd FileType go nmap <leader>l :GoMetaLinter<CR>
+
+    " Syntax stuff
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_interfaces = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_fmt_command = "goimports"
+    let g:go_fmt_options = {
+      \ 'gofmt': '',
+      \ }
+
+"
+" Terraform Configs
+"
+    let g:terraform_fmt_on_save=1
+    let g:terraform_align=1
 
 "
 " Ruby Configs
@@ -165,3 +207,29 @@
 " C Configs
 "
     autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+
+"
+" Yaml Configs
+"
+    autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+"
+" Protobuf Configs
+"
+    augroup filetype
+        au! BufRead,BufNewFile *.proto setfiletype proto
+    augroup end
+
+"
+" LightLine Configs
+"
+    let g:lightline = {
+        \ 'component_function': {
+        \   'filename': 'LightLineFilename'
+        \ }
+        \ }
+
+    function! LightLineFilename()
+        return expand('%')
+    endfunction
